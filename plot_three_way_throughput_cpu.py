@@ -91,7 +91,7 @@ ax1.set_xlabel('Requested Throughput (Mb/s)', fontsize=PRESENTATION_AXIS_LABEL_S
 ax1.set_ylabel('Receive Throughput (Mb/s)', fontsize=PRESENTATION_AXIS_LABEL_SIZE, color='black')
 ax2.set_ylabel('CPU Utilization (%)', fontsize=PRESENTATION_AXIS_LABEL_SIZE, color='gray')
 
-ax1.set_title('Three-Way Throughput and CPU Utilization Comparison', fontsize=PRESENTATION_TITLE_SIZE, fontweight='bold')
+ax1.set_title('Throughput and CPU Utilisation vs Requested Throughput', fontsize=PRESENTATION_TITLE_SIZE, fontweight='bold')
 
 # Combine legends
 lines1, labels1 = ax1.get_legend_handles_labels()

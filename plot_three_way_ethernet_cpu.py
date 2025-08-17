@@ -108,7 +108,7 @@ ax2.set_ylabel('Relative Difference from GCC (%)', fontsize=PRESENTATION_AXIS_LA
 # Set right y-axis scale to match plot.py (-20 to 80)
 ax2.set_ylim(-20, 80)
 
-ax1.set_title('Three-Way Ethernet Driver CPU Utilization Comparison', fontsize=PRESENTATION_TITLE_SIZE, fontweight='bold')
+ax1.set_title('CPU Utilisation and Relative Overhead vs. Throughput', fontsize=PRESENTATION_TITLE_SIZE, fontweight='bold')
 
 # Set x-axis
 ax1.set_xticks(x_positions)
