@@ -214,17 +214,6 @@ def plot_throughput_vs_cpu(pdf, svg_dir, df1, df2, label1='Dataset 1', label2='D
     x_positions = range(len(throughput))
     x_labels = [f'{int(x)}' for x in throughput]
     
-    width = 0.35
-    gap = 0.05  # Add small gap between bars
-    x1 = np.array(x_positions) - width/2 - gap/2
-    x2 = np.array(x_positions) + width/2 + gap/2
-    
-    bars1 = ax1.bar(x1, df1['Recv Thrput (Mb/s)'], width, label=f'{label1} Recv Throughput', 
-                    color=COLOR_BASELINE, alpha=0.9)
-    bars2 = ax1.bar(x2, df2['Recv Thrput (Mb/s)'], width, label=f'{label2} Recv Throughput', 
-                    color=COLOR_COMPARATOR, alpha=0.9)
-    
-    
     if presentation_mode:
         title_size = PRESENTATION_TITLE_SIZE
         axis_label_size = PRESENTATION_AXIS_LABEL_SIZE
@@ -238,6 +227,12 @@ def plot_throughput_vs_cpu(pdf, svg_dir, df1, df2, label1='Dataset 1', label2='D
         line_width = REGULAR_LINE_WIDTH
         marker_size = REGULAR_MARKER_SIZE
     
+    # Plot throughput as lines instead of bars
+    line1 = ax1.plot(x_positions, df1['Recv Thrput (Mb/s)'], 'o-', label=f'{label1} Recv Throughput', 
+                     linewidth=line_width, markersize=marker_size, color=COLOR_BASELINE)
+    line2 = ax1.plot(x_positions, df2['Recv Thrput (Mb/s)'], 's-', label=f'{label2} Recv Throughput', 
+                     linewidth=line_width, markersize=marker_size, color=COLOR_COMPARATOR)
+    
     ax1.set_xlabel('Requested Throughput (Mb/s)', fontsize=axis_label_size)
     ax1.set_ylabel('Received Throughput (Mb/s)', fontsize=axis_label_size)
     ax1.set_title('Received Throughput vs Requested with CPU Utilization Overlay', fontsize=title_size, fontweight='bold')
@@ -249,11 +244,11 @@ def plot_throughput_vs_cpu(pdf, svg_dir, df1, df2, label1='Dataset 1', label2='D
     cpu_util1 = df1['CPU Util (Fraction)'] * 100
     cpu_util2 = df2['CPU Util (Fraction)'] * 100
     
-    line1 = ax2.plot(x_positions, cpu_util1, 'o', label=f'{label1} CPU Util', 
-                     linewidth=line_width, markersize=marker_size, color=COLOR_DIFF_LINE, linestyle='-')
-    line2 = ax2.plot(x_positions, cpu_util2, 's', label=f'{label2} CPU Util', 
-                     linewidth=line_width, markersize=marker_size, color=COLOR_DIFF_LINE, linestyle='--')
-    
+    # Use same colors for CPU utilization lines with different line styles
+    line3 = ax2.plot(x_positions, cpu_util1, '^--', label=f'{label1} CPU Util', 
+                     linewidth=line_width, markersize=marker_size, color=COLOR_BASELINE)
+    line4 = ax2.plot(x_positions, cpu_util2, 'v--', label=f'{label2} CPU Util', 
+                     linewidth=line_width, markersize=marker_size, color=COLOR_COMPARATOR)
     
     ax2.set_ylabel('CPU Utilization (%)', fontsize=axis_label_size)
     ax2.set_ylim(0, 105)
