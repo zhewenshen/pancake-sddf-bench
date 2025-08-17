@@ -69,17 +69,17 @@ x1 = np.array(x_positions) - width - gap
 x2 = np.array(x_positions)
 x3 = np.array(x_positions) + width + gap
 
-bars1 = ax1.bar(x1, gcc_eth_cpu, width, label='GCC meson', color=COLOR_BASELINE, alpha=0.85)
-bars2 = ax1.bar(x2, compcert_eth_cpu, width, label='CompCert meson', color=COLOR_COMPARATOR1, alpha=0.85)
-bars3 = ax1.bar(x3, pnk_eth_cpu, width, label='PNK meson FFI', color=COLOR_COMPARATOR2, alpha=0.85)
+bars1 = ax1.bar(x1, gcc_eth_cpu, width, label='C', color=COLOR_BASELINE, alpha=0.85)
+bars2 = ax1.bar(x2, compcert_eth_cpu, width, label='CompCert C', color=COLOR_COMPARATOR1, alpha=0.85)
+bars3 = ax1.bar(x3, pnk_eth_cpu, width, label='Pancake', color=COLOR_COMPARATOR2, alpha=0.85)
 
 # Plot relative difference lines on secondary y-axis
 ax2.plot(x_positions, compcert_diff, 'o-', 
          color=COLOR_DIFF_LINE, linewidth=PRESENTATION_LINE_WIDTH, 
-         markersize=PRESENTATION_DIFF_MARKER_SIZE, label='CompCert vs GCC (%)', alpha=0.8)
+         markersize=PRESENTATION_DIFF_MARKER_SIZE, label='CompCert C vs C (%)', alpha=0.8)
 ax2.plot(x_positions, pnk_diff, 
          color=COLOR_DIFF_LINE, linewidth=PRESENTATION_LINE_WIDTH, 
-         markersize=PRESENTATION_DIFF_MARKER_SIZE, label='PNK vs GCC (%)', alpha=0.8, linestyle='--', marker='s')
+         markersize=PRESENTATION_DIFF_MARKER_SIZE, label='Pancake vs C (%)', alpha=0.8, linestyle='--', marker='s')
 
 # Add horizontal line at 0% difference
 ax2.axhline(y=0, color=COLOR_DIFF_LINE, linestyle=':', alpha=0.5, linewidth=2)
@@ -116,7 +116,7 @@ ax1.set_xticklabels(x_labels, rotation=45, ha='right')
 
 # Combine legends
 bars_handles = [bars1, bars2, bars3]
-bars_labels = ['GCC meson', 'CompCert meson', 'PNK meson FFI']
+bars_labels = ['C', 'CompCert C', 'Pancake']
 lines_handles, lines_labels = ax2.get_legend_handles_labels()
 
 ax1.legend(bars_handles + lines_handles, bars_labels + lines_labels, 

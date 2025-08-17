@@ -67,24 +67,24 @@ ax2 = ax1.twinx()
 # Plot throughput on left axis
 ax1.plot(requested_throughputs, gcc_recv_thrput, 
          color=COLOR_BASELINE, linewidth=PRESENTATION_LINE_WIDTH, marker='o', markersize=PRESENTATION_MARKER_SIZE, 
-         label='GCC throughput', alpha=0.9)
+         label='C throughput', alpha=0.9)
 ax1.plot(requested_throughputs, compcert_recv_thrput, 
          color=COLOR_COMPARATOR1, linewidth=PRESENTATION_LINE_WIDTH, marker='s', markersize=PRESENTATION_MARKER_SIZE, 
-         label='CompCert throughput', alpha=0.9)
+         label='CompCert C throughput', alpha=0.9)
 ax1.plot(requested_throughputs, pnk_recv_thrput, 
          color=COLOR_COMPARATOR2, linewidth=PRESENTATION_LINE_WIDTH, marker='^', markersize=PRESENTATION_MARKER_SIZE, 
-         label='PNK throughput', alpha=0.9)
+         label='Pancake throughput', alpha=0.9)
 
 # Plot CPU utilization on right axis (dashed lines)
 ax2.plot(requested_throughputs, gcc_cpu_util, 
          color=COLOR_BASELINE, linewidth=PRESENTATION_LINE_WIDTH, linestyle='--', marker='o', markersize=PRESENTATION_MARKER_SIZE, 
-         label='GCC CPU util', alpha=0.7)
+         label='C CPU util', alpha=0.7)
 ax2.plot(requested_throughputs, compcert_cpu_util, 
          color=COLOR_COMPARATOR1, linewidth=PRESENTATION_LINE_WIDTH, linestyle='--', marker='s', markersize=PRESENTATION_MARKER_SIZE, 
-         label='CompCert CPU util', alpha=0.7)
+         label='CompCert C CPU util', alpha=0.7)
 ax2.plot(requested_throughputs, pnk_cpu_util, 
          color=COLOR_COMPARATOR2, linewidth=PRESENTATION_LINE_WIDTH, linestyle='--', marker='^', markersize=PRESENTATION_MARKER_SIZE, 
-         label='PNK CPU util', alpha=0.7)
+         label='Pancake CPU util', alpha=0.7)
 
 # Set labels and formatting
 ax1.set_xlabel('Requested Throughput (Mb/s)', fontsize=PRESENTATION_AXIS_LABEL_SIZE)
